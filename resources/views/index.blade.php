@@ -24,6 +24,7 @@
               <li><a href="#about" class="page-scroll">About</a></li>
               <li><a href="#services" class="page-scroll">New</a></li>
               <li><a href="#portfolio" class="page-scroll">Blog</a></li>
+              <li><a href="{{route('categories')}}" class="page-scroll">Category</a></li>
               <li><a href="#team" class="page-scroll">Team</a></li>
               <li><a href="#contact" class="page-scroll">Contact</a></li>
             </ul>
@@ -32,11 +33,28 @@
         @endif
         {{-- message passing through session --}}
         @if(session('success'))
-        <div class="session">	{{session('success')}} </div>
+        <div id="success-alert" class="alert alert-success">	{{session('success')}} 
+        </div>
         @elseif(session('error'))
-        <div class="session">	{{session('error')}} </div>
+        <div id="error-alert" class="alert alert-danger">	{{session('error')}} </div>
         @endif
         <!-- /.navbar-collapse --> 
+        <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script>
+    // Automatically remove success message after 5 seconds
+    $(document).ready(function(){
+        $("#success-alert").fadeTo(2000, 200).slideUp(200, function(){
+            $("#success-alert").slideUp(200);
+        });
+    });
+
+    // Automatically remove error message after 5 seconds
+    $(document).ready(function(){
+        $("#error-alert").fadeTo(2000, 200).slideUp(200, function(){
+            $("#error-alert").slideUp(200);
+        });
+    });
+</script>
     </div>
   </nav>
 <!-- Header -->
@@ -62,15 +80,27 @@
       <hr>
     </div>
     <div class="row">
-      <div class="col-xs-12 col-md-6 text-center"> <img src="{{asset('assets/img/about.jpg')}}" class="img-responsive" alt=""> </div>
+      <div class="col-xs-12 col-md-6 text-center"> <img src="{{asset('assets/img/living3.avif')}}" class="img-responsive" alt=""> </div>
       <div class="col-xs-12 col-md-6">
         <div class="about-text">
-          <h3>Team :</h3>
-          <p>Meet our team of passionate and skilled designers, architects, and project managers.
-             With a wealth of experience and a shared commitment to excellence, our team collaborates seamlessly to bring visions to life.</p>
-          <h3>Vision :</h3>
-          <p>"We envision being a trailblazer in the interior design industry, setting new standards for creativity, innovation, and 
-            client satisfaction. Our goal is to create timeless interiors that leave a lasting impression."
+          <h3>Our Journey :</h3>
+          <p>From a small studio to a global design powerhouse, 
+            Design Canvas has evolved through a decade of passion and dedication. 
+            Our journey has been marked by the successful collaboration with clients
+            from diverse industries and the creation of impactful design solutions.</p>
+          <h3>Our Team :</h3>
+          <p>
+            Meet the talented individuals who make Design Canvas a creative hub. 
+            From graphic designers to UX/UI experts, our team brings a wealth of experience and
+            a fresh perspective to every design challenge.
+            Together, we strive to push the boundaries of design innovation.
+          </p>
+          <h3>Social Responsibility :</h3>
+          <p>
+            Beyond design, we believe in making a positive impact on society.
+            Design Canvas is actively involved in initiatives promoting environmental 
+            sustainability and community development. We believe that design can be a 
+            force for positive change.
           </p>
         </div>
       </div>
@@ -123,7 +153,7 @@
         {{-- @foreach($category as $cat) --}}
         <li>
           <ol class="type">
-            <li><a href="{{url('/category')}}" > VIEW MORE</a></li>
+            <li><a href="{{url('/category')}}">VIEW MORE</a></li>
             {{-- <li><a href="{{url('/'.$cat->id) }}" data-filter="*" class="active">{{$cat->name}}</a></li> --}}
           </ol>
         </li>

@@ -27,4 +27,5 @@ Route::get('/logout',[VerifyController::class,'logout'])->name('logout');
 Route::post('/blog',[BlogController::class,'addblog'])->name('addblog');
 Route::post('/show',[BlogController::class,'show'])->name('show');
 Route::get('/category',[ViewController::class,'category'])->name('categories');
+// Route::get('/blog',[ViewController::class,'blog'])->name('blog');
 

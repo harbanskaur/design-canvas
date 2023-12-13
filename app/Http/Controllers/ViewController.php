@@ -31,11 +31,11 @@ class ViewController extends Controller
         return view('category',compact('category','data'));
 
     }
-    // public function category($id)
-    // {
-    //     $category = Category::all();
-    //     $categories = Category::where('id',$id)->get();
-    //     $show = Blog::where('cid',$id)->get();
-    //     return view('index',compact('categories','show'));// selected categories 
-    // }
+    public function blog()
+    {
+        $category = Category::all();
+        $data = Blog::all();
+        return view('blogs',compact('category','data'));
+
+    }
 }

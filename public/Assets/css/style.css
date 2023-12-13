@@ -602,7 +602,7 @@ button:active {
 	color:red;
 }
 /* session */
-.session{
+.alert{
 	text-align: center;
 	background-color: #94ae44;
 	font-size: 25px;

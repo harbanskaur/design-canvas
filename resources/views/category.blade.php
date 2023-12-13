@@ -13,7 +13,7 @@
             padding: 20px;
             background-color: #f8f9fa;
         }
-
+        
         h1 {
             text-align: center;
             color: #333;
@@ -101,9 +101,7 @@
     </style>
 </head>
 <body>
-
-    <h1 class="mb-4">Blog Website</h1>
-
+    <h1>ALL BLOGS</h1>
     <!-- Category Select Option -->
     <div class="mb-3">
         <label for="category" class="form-label">Select Category:</label>

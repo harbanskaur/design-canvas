@@ -22,10 +22,10 @@ Route::get('/signup',[ViewController::class,'signup'])->name('signup');
 Route::post('/signup-form',[VerifyController::class,'signupForm'])->name('signup-form');
 Route::post('/login-form',[VerifyController::class,'loginForm'])->name('login-form');
 Route::get('/logout',[VerifyController::class,'logout'])->name('logout');
-// Route::post('/categories',[VerifyController::class,'categories'])->name('categories');
-// Route::get('/category/{id}',[ViewController::class,'category'])->name('category');
+// Route::get('/categories',[ViewController::class,'categories'])->name('category');
+// Route::get('/showcategory/{id}',[ViewController::class,'showcategory'])->name('category');
 Route::post('/blog',[BlogController::class,'addblog'])->name('addblog');
 Route::post('/show',[BlogController::class,'show'])->name('show');
-Route::get('/category',[ViewController::class,'category'])->name('categories');
+Route::get('/category/{id}',[ViewController::class,'category'])->name('category');
 // Route::get('/blog',[ViewController::class,'blog'])->name('blog');
 

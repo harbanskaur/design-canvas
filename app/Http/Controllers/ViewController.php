@@ -24,18 +24,20 @@ class ViewController extends Controller
     {
         return view('signup');
     }
-    public function category()
+    public function category($id)
     {
-        $category = Category::all();
-        $data = Blog::all();
-        return view('category',compact('category','data'));
+        $categories = Category::all();
+        $selectedCategory = Category::findOrFail($id);
+        $show = Blog::where('cid', $id)->get();
 
+        return view('category', compact('categories', 'selectedCategory', 'show'));
     }
+
     public function blog()
     {
-        $category = Category::all();
-        $data = Blog::all();
-        return view('blogs',compact('category','data'));
-
+        $data = Blog::inRandomOrder()->limit(8)->get();
+        return view('blogs', compact('data'));
     }
+
+
 }

@@ -1,10 +1,10 @@
 @include('layouts.header')
-
-@if(session('success'))
-<div class="session">	{{session('success')}} </div>
-@elseif(session('error'))
-<div class="session">	{{session('error')}} </div>
-@endif
+        @if(session('success'))
+        <div id="success-alert" class="alert alert-success">	{{session('success')}} 
+        </div>
+        @elseif(session('error'))
+        <div id="error-alert" class="alert alert-danger">	{{session('error')}} </div>
+        @endif
 <div id="about">
 
 	{{-- validation msg --}}

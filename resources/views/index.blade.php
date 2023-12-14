@@ -24,7 +24,7 @@
               <li><a href="#about" class="page-scroll">About</a></li>
               <li><a href="#services" class="page-scroll">New</a></li>
               <li><a href="#portfolio" class="page-scroll">Blog</a></li>
-              <li><a href="{{route('categories')}}" class="page-scroll">Category</a></li>
+              {{-- <li><a href="{{url('category/{id}')}}" class="page-scroll">Category</a></li> --}}
               <li><a href="#team" class="page-scroll">Team</a></li>
               <li><a href="#contact" class="page-scroll">Contact</a></li>
             </ul>
@@ -148,19 +148,34 @@
       <hr>
       <p>These All Our Ideas About the Decor </p>
     </div>
-    <div class="categories">
+    {{-- <div class="categories">
       <ul class="cat">
-        {{-- @foreach($category as $cat) --}}
+        @foreach($category as $cat)
         <li>
           <ol class="type">
-            <li><a href="{{url('/category')}}">VIEW MORE</a></li>
-            {{-- <li><a href="{{url('/'.$cat->id) }}" data-filter="*" class="active">{{$cat->name}}</a></li> --}}
+            {{-- <li><a href="{{url('/category')}}">VIEW MORE</a></li> --}}
+            {{-- <li><a href="{{url('/'.$cat->id) }}" data-filter="*" class="active">{{$cat->name}}</a></li>
           </ol>
         </li>
-        {{-- @endforeach --}}
+        @endforeach
       </ul>
       <div class="clearfix"></div>
+    </div> --}}
+
+
+    <!-- Index.blade.php -->
+    <div class="mb-3">
+      <label for="category" class="form-label">Select Category:</label>
+      <select id="categorySelect" class="form-select">
+          <option value="">Select a category</option>
+          @foreach($category as $cat)
+              <option value="{{ route('category', ['id' => $cat->id]) }}">{{ $cat->name }}</option>
+          @endforeach
+      </select>
     </div>
+
+
+
     <div class="row">
       <div class="portfolio-items">
         @foreach($data as $row)
@@ -326,7 +341,20 @@
                 document.body.style.overflow = 'auto';
             });
         });
+    
+
+    
     </script>
+    <!-- Index.blade.php - Add at the bottom of the body -->
+<script>
+  document.getElementById('categorySelect').addEventListener('change', function() {
+      var selectedCategoryUrl = this.value;
+      if (selectedCategoryUrl) {
+          window.location.href = selectedCategoryUrl;
+      }
+  });
+</script>
+
 @endif
 </body>
 </html>

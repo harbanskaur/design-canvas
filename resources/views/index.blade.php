@@ -119,6 +119,7 @@
       <form action="{{route('addblog')}}" method="post" enctype="multipart/form-data" class="blog-form">
         @csrf
         <br/>
+        
         <label for="image">Blog Image:</label>
         <input type="file"  name="image" accept="image/*" required>
     
@@ -261,7 +262,7 @@
       <h3>Contact Info</h3>
       <div class="contact-item"> <span>Address</span>
         <p>4321 California St,<br>
-          San Francisco, CA 12345</p>
+          San Francisco </p>
       </div>
       <div class="contact-item"> <span>Email</span>
         <p>info@company.com</p>
@@ -272,23 +273,24 @@
     </div>
     <div class="col-md-8">
       <h3>Leave us a message</h3>
-      <form name="sentMessage" id="contactForm" novalidate>
+      <form name="sentMessage" id="contactForm" method="post" action="{{route('contact')}}">
+        @csrf
         <div class="row">
           <div class="col-md-6">
             <div class="form-group">
-              <input type="text" id="name" class="form-control" placeholder="Name" required="required">
+              <input type="text" id="name" class="form-control" placeholder="Name" name="name" required="required">
               <p class="help-block text-danger"></p>
             </div>
           </div>
           <div class="col-md-6">
             <div class="form-group">
-              <input type="email" id="email" class="form-control" placeholder="Email" required="required">
+              <input type="email" id="email" class="form-control" placeholder="Email"  name="email" required="required">
               <p class="help-block text-danger"></p>
             </div>
           </div>
         </div>
         <div class="form-group">
-          <textarea name="message" id="message" class="form-control" rows="4" placeholder="Message" required></textarea>
+          <textarea name="message" id="message" class="form-control" rows="4" placeholder="Message" name="message" required></textarea>
           <p class="help-block text-danger"></p>
         </div>
         <div id="success"></div>
@@ -322,8 +324,7 @@
 {{-- <script type="text/javascript" src="{{asset('assets/js/contact_me.js')}}"></script>  --}}
 <script type="text/javascript" src="{{asset('assets/js/main.js')}}"></script>
 
-
-@if (!Auth::guard('signup')->check())
+    @if (!Auth::guard('signup')->check())
         <script>
             document.addEventListener('DOMContentLoaded', function() {
                 document.body.style.overflow = 'hidden';
@@ -334,27 +335,22 @@
         </script>
     @endif
     @if (Auth::guard('signup')->check())
-    <script>
-        document.addEventListener('DOMContentLoaded', function() {
-            document.body.style.overflow = 'auto';
-            window.addEventListener('beforeunload', function() {
-                document.body.style.overflow = 'auto';
-            });
-        });
-    
-
-    
-    </script>
-    <!-- Index.blade.php - Add at the bottom of the body -->
-<script>
-  document.getElementById('categorySelect').addEventListener('change', function() {
-      var selectedCategoryUrl = this.value;
-      if (selectedCategoryUrl) {
-          window.location.href = selectedCategoryUrl;
-      }
-  });
-</script>
-
-@endif
+        <script>
+          document.addEventListener('DOMContentLoaded', function() {
+              document.body.style.overflow = 'auto';
+              window.addEventListener('beforeunload', function() {
+                  document.body.style.overflow = 'auto';
+              });
+          });
+        </script>
+        <script>
+          document.getElementById('categorySelect').addEventListener('change', function() {
+              var selectedCategoryUrl = this.value;
+              if (selectedCategoryUrl) {
+                  window.location.href = selectedCategoryUrl;
+              }
+          });
+        </script>
+    @endif
 </body>
 </html>

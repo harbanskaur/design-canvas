@@ -25,6 +25,7 @@
     <link rel="stylesheet" type="text/css" href="{{asset('assets/css/nivo-lightbox/nivo-lightbox.css')}}">
     <link rel="stylesheet" type="text/css" href="{{asset('assets/css/nivo-lightbox/default.css')}}">
     <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700,900" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
     
  
         <!-- ... other head elements ... -->

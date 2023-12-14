@@ -5,15 +5,14 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Blog;
 use App\Models\Category;
+use App\Models\Comment;
 
 class ViewController extends Controller
 {
     public function index()
     {
-        $data = Blog::all(); //all data from blogs table
+        $data = Blog::limit(10)->get(); //all data from blogs table
         $category = Category::all(); // all data from category table 
-        // $categories = Category::where('id',$id)->get();
-        // $show = Blog::where('cid',$id)->get();'categories','show'
         return view('index', compact('data','category'));
     }
     public function login()
@@ -24,20 +23,12 @@ class ViewController extends Controller
     {
         return view('signup');
     }
-    public function category($id)
+    public function category(Request $request,$id)
     {
         $categories = Category::all();
         $selectedCategory = Category::findOrFail($id);
         $show = Blog::where('cid', $id)->get();
-
-        return view('category', compact('categories', 'selectedCategory', 'show'));
+        $comments = Comment::where('blogid',$request->get('blogid'));
+        return view('category', compact('categories', 'selectedCategory', 'show','comments'));
     }
-
-    public function blog()
-    {
-        $data = Blog::inRandomOrder()->limit(8)->get();
-        return view('blogs', compact('data'));
-    }
-
-
 }
